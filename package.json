@@ -1,0 +1,19 @@
+{
+  "name": "mebx",
+  "version": "1.0.0",
+  "description": "a library like mobx",
+  "main": "./dist/mebx.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mobx",
+    "observable",
+    "observer"
+  ],
+  "author": "rplss",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
+}
