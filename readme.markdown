@@ -4,5 +4,4 @@
 ## api ##
 
 ## feature ##
-observable
-autorun
+observable autorun -- v1.1  
