@@ -4,7 +4,18 @@
   "description": "a library like mobx",
   "main": "./dist/mebx.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear": "rimraf ./dist",
+    "prepublishOnly": "npm run build",
+    "build": "rimraf ./dist && ./node_modules/typescript/bin/tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   },
   "keywords": [
     "mobx",
@@ -14,6 +25,9 @@
   "author": "rplss",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-patternplate": "^8.2.0",
+    "rimraf": "^3.0.0",
     "typescript": "^3.7.2"
   }
 }
