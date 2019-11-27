@@ -1,7 +1,7 @@
 import common from '../common/index'
 
 function autoRun(fn: () => void): () => boolean {
-  if (!common.autoRunKey) throw new Error('another autoRun is running ?')
+  if (common.autoRunKey) throw new Error('another autoRun is running ?')
   common.autoRunKey = common.autoRuns.add(fn)
   let key = common.autoRunKey
   fn()

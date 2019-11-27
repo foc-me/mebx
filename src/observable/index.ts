@@ -9,8 +9,8 @@ class Observer {
   public target: object
   constructor(target: object) {
     this.target = new Proxy(target, {
-      set: this.handler_set,
-      get: this.handler_get
+      set: this.handler_set.bind(this),
+      get: this.handler_get.bind(this)
     })
     // this.autoRuns = new KeyMap()
     this.indexMap = new KeyMap()
@@ -19,19 +19,22 @@ class Observer {
   private handler_set(target: any, name: targetKeyType, value: any): boolean {
     const key = name.toString()
     target[name] = value
-    if (common.autoRunKey) {
-      if (this.indexMap.has(key)) this.indexMap.get(key).push(common.autoRunKey)
-      else this.indexMap.add([common.autoRunKey], key)
-    }
-    return true
-  }
-  private handler_get(target: any, name: targetKeyType): any {
-    const key = name.toString()
     if (this.indexMap.has(key)) {
       this.indexMap.get(key).forEach(index => {
         const fn = common.autoRuns.get(index)
         if (fn) fn()
       })
+    }
+    return true
+  }
+  private handler_get(target: any, name: targetKeyType): any {
+    const key = name.toString()
+    if (common.autoRunKey) {
+      if (this.indexMap.has(key)) {
+        const keys = this.indexMap.get(key)
+        if (!keys.includes(common.autoRunKey)) keys.push(common.autoRunKey)
+      }
+      else this.indexMap.add([common.autoRunKey], key)
     }
     return target[name]
   }
