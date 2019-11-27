@@ -1,5 +1,7 @@
-const observer = function(name: string): void {
-  console.log(`Hi ~ ${name}`)
-}
+import observable from './observable/index'
+import autoRun from './autoRun/index'
 
-export { observer }
+const mebx = { observable, autoRun }
+
+export { observable, autoRun }
+export default mebx
