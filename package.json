@@ -1,6 +1,6 @@
 {
   "name": "mebx",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a library like mobx",
   "main": "./dist/mebx.js",
   "scripts": {
