@@ -1,7 +1,7 @@
 import observable from './observable/index'
-import autoRun from './autoRun/index'
+import autoRun, { OptionType } from './autoRun/index'
 
-const mebx = { observable, autoRun }
+const mebx = { observable, autoRun, OptionType }
 
-export { observable, autoRun }
+export { observable, autoRun, OptionType }
 export default mebx

@@ -1,5 +1,6 @@
 import KeyMap from '../keyMap/index'
 import common from '../common/index'
+import { runAction } from '../autoRun/index'
 
 type targetKeyType = string | number | symbol
 
@@ -17,13 +18,11 @@ class Observer {
   }
 
   private handler_set(target: any, name: targetKeyType, value: any): boolean {
+    if (common.autoRunKey) throw new Error('do not set value to a observable object in autoRun functions')
     const key = name.toString()
     target[name] = value
     if (this.indexMap.has(key)) {
-      this.indexMap.get(key).forEach(index => {
-        const fn = common.autoRuns.get(index)
-        if (fn) fn()
-      })
+      this.indexMap.get(key).forEach(runAction)
     }
     return true
   }
