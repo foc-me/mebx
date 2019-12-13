@@ -5,7 +5,7 @@ import { autoRunType } from '../autoRun/index'
 class Common {
   private _AUTORUN_KEY_: string = ''
   public autoRuns: KeyMap<autoRunType>
-  public observers: KeyMap<Observer>
+  public observers: KeyMap<Observer<any>>
   constructor() {
     this.autoRuns = new KeyMap()
     this.observers = new KeyMap()
