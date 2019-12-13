@@ -1,9 +1,10 @@
 import KeyMap from '../keyMap/index'
 import { Observer } from '../observable/index'
+import { autoRunType } from '../autoRun/index'
 
 class Common {
   private _AUTORUN_KEY_: string = ''
-  public autoRuns: KeyMap<() => any>
+  public autoRuns: KeyMap<autoRunType>
   public observers: KeyMap<Observer>
   constructor() {
     this.autoRuns = new KeyMap()
