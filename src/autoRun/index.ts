@@ -28,7 +28,6 @@ function autoRun(fn: () => any, opt: autoRunOptionType = defaultAutoRunOption): 
 autoRun.OptionType = OptionType
 
 function getAction(type?: OptionType): (...p: any) => any {
-  console.log('~~~~~~~~~~~', type == OptionType.throttle)
   switch (type) {
     case OptionType.throttle: return throttle
     default: return debounce
@@ -47,5 +46,6 @@ function runAction(key: string): void {
   fn()
 }
 
-export { autoRunType, OptionType, runAction }
+export { autoRunType, OptionType }
+export { autoRun, runAction }
 export default autoRun

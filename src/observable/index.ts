@@ -4,11 +4,11 @@ import { runAction } from '../autoRun/index'
 
 type targetKeyType = string | number | symbol
 
-class Observer {
+class Observer<T extends object> {
   // private autoRuns: KeyMap<() => void>
   private indexMap: KeyMap<string[]>
-  public target: object
-  constructor(target: object) {
+  public target: T
+  constructor(target: T) {
     this.target = new Proxy(target, {
       set: this.handler_set.bind(this),
       get: this.handler_get.bind(this)
@@ -40,7 +40,7 @@ class Observer {
 }
 
 // object observable
-function observable(target: object): object {
+function observable<T extends object>(target: T): T {
   let observer = new Observer(target)
   return observer.target
 }
